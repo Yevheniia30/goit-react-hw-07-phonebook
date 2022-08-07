@@ -1,16 +1,27 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { ThreeDots } from 'react-loader-spinner';
 import s from './ContactList.module.css';
+import {
+  getUser,
+  // deleteUser,
+  // toggleUser,
+} from 'redux/contacts/contactsOperations';
 import { ContactItem } from './ContactItem';
-import { deleteUser } from 'redux/contacts/contactsActions';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.item);
   const filter = useSelector(state => state.contacts.filter);
+  const loading = useSelector(state => state.loading);
 
-  const handleDelete = id => {
-    dispatch(deleteUser(id));
-  };
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
+
+  // const handleDelete = id => {
+  //   dispatch(deleteUser(id));
+  // };
 
   const getFilteredContacts = () => {
     if (!filter) {
@@ -27,10 +38,13 @@ export const ContactList = () => {
   const filteredContacts = getFilteredContacts();
 
   return (
-    <ul className={s.list}>
-      {filteredContacts?.map(item => (
-        <ContactItem item={item} onDelete={handleDelete} key={item.id} />
-      ))}
-    </ul>
+    <>
+      {loading && <ThreeDots color="#00BFFF" height={80} width={80} />}
+      <ul className={s.list}>
+        {filteredContacts?.map(item => (
+          <ContactItem item={item} key={item.id} />
+        ))}
+      </ul>
+    </>
   );
 };

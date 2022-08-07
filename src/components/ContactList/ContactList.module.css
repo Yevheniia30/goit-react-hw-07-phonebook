@@ -4,13 +4,18 @@
     padding: 0;
 }
 .name{
-    margin-right: 30px;
+    /* margin-right: 30px; */
+    margin: 0 30px 0 5px;
+    justify-self: start;
+}
+.item{
+     display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .item:not(:last-child){
     margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+   
 }
 .btn{
     margin-left: 10px;
