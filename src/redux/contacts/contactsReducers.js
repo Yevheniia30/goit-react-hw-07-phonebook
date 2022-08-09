@@ -4,21 +4,21 @@ import {
   // deleteUser,
   filterUser,
   //
-  getUserLoading,
-  getUserSuccess,
-  getUserError,
-  //
-  addUserLoading,
-  addUserSuccess,
-  addUserError,
-  //
-  deleteUserLoading,
-  deleteUserSuccess,
-  deleteUserError,
-  //
-  toggleUserSuccess,
-  toggleUserLoading,
-  toggleUserError,
+  // getUserLoading,
+  // getUserSuccess,
+  // getUserError,
+  // //
+  // addUserLoading,
+  // addUserSuccess,
+  // addUserError,
+  // //
+  // deleteUserLoading,
+  // deleteUserSuccess,
+  // deleteUserError,
+  // //
+  // toggleUserSuccess,
+  // toggleUserLoading,
+  // toggleUserError,
 } from './contactsActions';
 // import { addUser } from './contactsOperations';
 import { getUser, addUser, deleteUser, toggleUser } from './contactsOperations';

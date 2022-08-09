@@ -1,19 +1,19 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {
-  getUserLoading,
-  getUserSuccess,
-  getUserError,
-  addUserLoading,
-  addUserError,
-  addUserSuccess,
-  deleteUserLoading,
-  deleteUserSuccess,
-  deleteUserError,
-  toggleUserLoading,
-  toggleUserSuccess,
-  toggleUserError,
-} from './contactsActions';
+// import {
+//   getUserLoading,
+//   getUserSuccess,
+//   getUserError,
+//   addUserLoading,
+//   addUserError,
+//   addUserSuccess,
+//   deleteUserLoading,
+//   deleteUserSuccess,
+//   deleteUserError,
+//   toggleUserLoading,
+//   toggleUserSuccess,
+//   toggleUserError,
+// } from './contactsActions';
 
 const instance = axios.create({
   baseURL: 'https://62eebbae8d7bc7c2eb71c14b.mockapi.io/api/v1',
