@@ -30,7 +30,7 @@ export const ContactItem = ({ item }) => {
 ContactItem.propTypes = {
   item: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     isImportant: PropTypes.bool,
   }),

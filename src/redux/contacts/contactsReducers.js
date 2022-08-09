@@ -21,6 +21,7 @@ import {
   toggleUserError,
 } from './contactsActions';
 // import { addUser } from './contactsOperations';
+import { getUser, addUser, deleteUser, toggleUser } from './contactsOperations';
 
 const initialState = {
   contacts: [],
@@ -30,40 +31,69 @@ const initialState = {
 };
 
 export const itemReducer = createReducer(initialState.contacts, {
-  [getUserSuccess]: (_, { payload }) => payload,
-  [addUserSuccess]: (state, { payload }) => [...state, payload],
-  [deleteUserSuccess]: (state, { payload }) =>
+  [getUser.fulfilled]: (_, { payload }) => payload,
+  // [getUserSuccess]: (_, { payload }) => payload,
+  [addUser.fulfilled]: (state, { payload }) => [...state, payload],
+  // [addUserSuccess]: (state, { payload }) => [...state, payload],
+  [deleteUser.fulfilled]: (state, { payload }) =>
     state.filter(item => item.id !== payload),
-  [toggleUserSuccess]: (state, { payload }) =>
+  // [deleteUserSuccess]: (state, { payload }) =>
+  //   state.filter(item => item.id !== payload),
+  [toggleUser.fulfilled]: (state, { payload }) =>
     state.map(item => (item.id === payload.id ? payload : item)),
+  // [toggleUserSuccess]: (state, { payload }) =>
+  //   state.map(item => (item.id === payload.id ? payload : item)),
   // [addUser]: (state, { payload }) => [...state, payload],
   // [deleteUser]: (state, { payload }) =>
   //   state.filter(item => item.id !== payload),
 });
 
 export const loadingReducer = createReducer(initialState.loading, {
-  [addUserLoading]: () => true,
-  [addUserSuccess]: () => false,
-  [addUserError]: () => false,
+  [getUser.pending]: () => true,
+  [getUser.fulfilled]: () => false,
+  [getUser.rejected]: () => false,
+  // [getUserLoading]: () => true,
+  // [getUserSuccess]: () => false,
+  // [getUserError]: () => false,
 
-  [deleteUserLoading]: () => true,
-  [deleteUserSuccess]: () => false,
-  [deleteUserError]: () => false,
+  [addUser.pending]: () => true,
+  [addUser.fulfilled]: () => false,
+  [addUser.rejected]: () => false,
+  // [addUserLoading]: () => true,
+  // [addUserSuccess]: () => false,
+  // [addUserError]: () => false,
 
-  [getUserLoading]: () => true,
-  [getUserSuccess]: () => false,
-  [getUserError]: () => false,
+  [deleteUser.pending]: () => true,
+  [deleteUser.fulfilled]: () => false,
+  [deleteUser.rejected]: () => false,
+  // [deleteUserLoading]: () => true,
+  // [deleteUserSuccess]: () => false,
+  // [deleteUserError]: () => false,
 
-  [toggleUserLoading]: () => true,
-  [toggleUserSuccess]: () => false,
-  [toggleUserError]: () => false,
+  [toggleUser.pending]: () => true,
+  [toggleUser.fulfilled]: () => false,
+  [toggleUser.rejected]: () => false,
+  // [toggleUserLoading]: () => true,
+  // [toggleUserSuccess]: () => false,
+  // [toggleUserError]: () => false,
 });
 
 export const errorReducer = createReducer(initialState.error, {
-  [addUserError]: (_, { payload }) => payload,
-  [deleteUserError]: (_, { payload }) => payload,
-  [getUserError]: (_, { payload }) => payload,
-  [toggleUserError]: (_, { payload }) => payload,
+  [getUser.rejected]: (_, { payload }) => payload,
+  [getUser.pending]: () => null,
+  // [getUserError]: (_, { payload }) => payload,
+
+  [addUser.rejected]: (_, { payload }) => payload,
+  [addUser.pending]: () => null,
+  // [addUserError]: (_, { payload }) => payload,
+
+  [deleteUser.rejected]: (_, { payload }) => payload,
+  [deleteUser.pending]: () => null,
+  // [deleteUserError]: (_, { payload }) => payload,
+
+  [toggleUser.rejected]: (_, { payload }) => payload,
+  [toggleUser.pending]: () => null,
+  // [toggleUserError]: (_, { payload }) => payload,
 });
 
 export const filterReducer = createReducer(initialState.filter, {

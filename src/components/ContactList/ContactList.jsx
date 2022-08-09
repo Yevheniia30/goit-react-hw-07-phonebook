@@ -2,11 +2,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
 import s from './ContactList.module.css';
-import {
-  getUser,
-  // deleteUser,
-  // toggleUser,
-} from 'redux/contacts/contactsOperations';
+import { contactsOperations } from 'redux/contacts';
+// import { getUser } from 'redux/contacts/contactsOperations';
 import { ContactItem } from './ContactItem';
 
 export const ContactList = () => {
@@ -15,8 +12,10 @@ export const ContactList = () => {
   const filter = useSelector(state => state.contacts.filter);
   const loading = useSelector(state => state.loading);
 
+  console.log('dispatch', dispatch);
+
   useEffect(() => {
-    dispatch(getUser());
+    dispatch(contactsOperations.getUser());
   }, [dispatch]);
 
   // const handleDelete = id => {
