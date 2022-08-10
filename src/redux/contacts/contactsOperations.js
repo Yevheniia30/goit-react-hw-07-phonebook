@@ -1,52 +1,44 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-// import {
-//   getUserLoading,
-//   getUserSuccess,
-//   getUserError,
-//   addUserLoading,
-//   addUserError,
-//   addUserSuccess,
-//   deleteUserLoading,
-//   deleteUserSuccess,
-//   deleteUserError,
-//   toggleUserLoading,
-//   toggleUserSuccess,
-//   toggleUserError,
-// } from './contactsActions';
 
 const instance = axios.create({
   baseURL: 'https://62eebbae8d7bc7c2eb71c14b.mockapi.io/api/v1',
 });
 
 // thunk
-export const getUser = createAsyncThunk('contacts/getUser', async () => {
+export const getContact = createAsyncThunk('contacts/getContact', async () => {
   const { data } = await instance.get('/contacts');
   return data;
 });
 
-export const addUser = createAsyncThunk('contacts/addUser', async contact => {
-  const { data } = await instance.post('/contacts', contact);
-  return data;
-});
+export const addContact = createAsyncThunk(
+  'contacts/addContact',
+  async contact => {
+    const { data } = await instance.post('/contacts', contact);
+    return data;
+  }
+);
 
-export const deleteUser = createAsyncThunk('contacts/deleteUser', async id => {
-  console.log('id', id);
-  await instance.delete(`/contacts/${id}`);
-  return id;
-});
+export const deleteContact = createAsyncThunk(
+  'contacts/deleteContact',
+  async id => {
+    console.log('id', id);
+    await instance.delete(`/contacts/${id}`);
+    return id;
+  }
+);
 
-export const toggleUser = createAsyncThunk(
-  'contacts/toggleUser',
+export const toggleContact = createAsyncThunk(
+  'contacts/toggleContact',
   async ({ id, isImportant }) => {
-    // const upd = { isImportant };
     const { data } = await instance.put(`/contacts/${id}`, { isImportant });
     return data;
   }
 );
 
-// export const addUser = createAsyncThunk(
-//   'contacts/addUser',
+// EXAMPLES
+// export const addContact = createAsyncThunk(
+//   'contacts/addContact',
 //   async (contact, { rejectWithValue }) => {
 //     try {
 //       const { data } = await instance.post('/contacts', contact);
@@ -58,50 +50,50 @@ export const toggleUser = createAsyncThunk(
 // );
 
 //
-// export const getUser = () => async dispatch => {
-//   dispatch(getUserLoading());
+// export const getContact = () => async dispatch => {
+//   dispatch(getContactLoading());
 //   try {
 //     const { data } = await instance.get('/contacts');
-//     dispatch(getUserSuccess(data));
+//     dispatch(getContactSuccess(data));
 //   } catch (error) {
-//     dispatch(getUserError(error));
+//     dispatch(getContactError(error));
 //   }
 // using THEN
-//   dispatch(getUserLoading());
+//   dispatch(getContactLoading());
 //   instance
 //     .get('/contacts')
-//     .then(({ data }) => dispatch(getUserSuccess(data)))
-//     .catch(error => dispatch(getUserError(error)));
+//     .then(({ data }) => dispatch(getContactSuccess(data)))
+//     .catch(error => dispatch(getContactError(error)));
 // };
 
 //
-// export const addUser = contact => dispatch => {
-//   dispatch(addUserLoading());
+// export const addContact = contact => dispatch => {
+//   dispatch(addContactLoading());
 //   instance
 //     .post('/contacts', contact)
-//     .then(({ data }) => dispatch(addUserSuccess(data)))
-//     .catch(error => dispatch(addUserError(error)));
+//     .then(({ data }) => dispatch(addContactSuccess(data)))
+//     .catch(error => dispatch(addContactError(error)));
 // };
 
 //
-// export const deleteUser = id => dispatch => {
-//   dispatch(deleteUserLoading());
+// export const deleteContact = id => dispatch => {
+//   dispatch(deleteContactLoading());
 //   instance
 //     .delete(`/contacts/${id}`)
-//     .then(() => dispatch(deleteUserSuccess(id)))
-//     .catch(error => dispatch(deleteUserError(error)));
+//     .then(() => dispatch(deleteContactSuccess(id)))
+//     .catch(error => dispatch(deleteContactError(error)));
 // };
 
 //
-// export const toggleUser =
+// export const toggleContact =
 //   ({ id, isImportant }) =>
 //   dispatch => {
 //     const upd = { isImportant };
 
-//     dispatch(toggleUserLoading());
+//     dispatch(toggleContactLoading());
 
 //     instance
 //       .put(`/contacts/${id}`, upd)
-//       .then(({ data }) => dispatch(toggleUserSuccess(data)))
-//       .catch(error => dispatch(toggleUserError(error)));
+//       .then(({ data }) => dispatch(toggleContactSuccess(data)))
+//       .catch(error => dispatch(toggleContactError(error)));
 //   };

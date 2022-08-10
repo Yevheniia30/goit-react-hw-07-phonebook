@@ -1,4 +1,5 @@
-import { reducer } from './contacts/contactsReducers';
+// import { reducer } from './contacts/contactsReducers';
+import contactsSlice from './contacts/contactsSlice';
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import {
@@ -24,7 +25,7 @@ import {
 export const store = configureStore({
   reducer: {
     // contacts: persistedReducer,
-    contacts: reducer,
+    contacts: contactsSlice,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

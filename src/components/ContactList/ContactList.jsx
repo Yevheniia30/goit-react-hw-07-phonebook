@@ -3,24 +3,17 @@ import { useEffect } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
 import s from './ContactList.module.css';
 import { contactsOperations } from 'redux/contacts';
-// import { getUser } from 'redux/contacts/contactsOperations';
 import { ContactItem } from './ContactItem';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.item);
+  const contacts = useSelector(state => state.contacts.contacts);
   const filter = useSelector(state => state.contacts.filter);
   const loading = useSelector(state => state.loading);
 
-  console.log('dispatch', dispatch);
-
   useEffect(() => {
-    dispatch(contactsOperations.getUser());
+    dispatch(contactsOperations.getContact());
   }, [dispatch]);
-
-  // const handleDelete = id => {
-  //   dispatch(deleteUser(id));
-  // };
 
   const getFilteredContacts = () => {
     if (!filter) {

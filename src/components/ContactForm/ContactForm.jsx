@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { nanoid } from 'nanoid';
 import s from './ContactForm.module.css';
-// import { addUser } from 'redux/contacts/contactsActions';
-import { addUser } from 'redux/contacts/contactsOperations';
+// import { addContact } from 'redux/contacts/contactsActions';
+// import { addContact } from 'redux/contacts/contactsOperations';
+import { contactsOperations } from 'redux/contacts';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
 
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.item);
+  const contacts = useSelector(state => state.contacts.contacts);
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -36,7 +36,6 @@ export const ContactForm = () => {
     const addedphone = contacts.find(item => item.phone === phone);
 
     const contact = {
-      // id: nanoid(4),
       name,
       phone,
     };
@@ -47,7 +46,7 @@ export const ContactForm = () => {
       ? alert(`${phone} is already in contacts as ${addedphone.name}`)
       : !name || !phone
       ? alert('Сomplete all fields')
-      : dispatch(addUser(contact));
+      : dispatch(contactsOperations.addContact(contact));
     reset();
   };
 

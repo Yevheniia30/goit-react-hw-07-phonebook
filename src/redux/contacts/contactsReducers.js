@@ -1,108 +1,70 @@
-import { combineReducers } from 'redux';
-import { createReducer } from '@reduxjs/toolkit';
-import {
-  // deleteUser,
-  filterUser,
-  //
-  // getUserLoading,
-  // getUserSuccess,
-  // getUserError,
-  // //
-  // addUserLoading,
-  // addUserSuccess,
-  // addUserError,
-  // //
-  // deleteUserLoading,
-  // deleteUserSuccess,
-  // deleteUserError,
-  // //
-  // toggleUserSuccess,
-  // toggleUserLoading,
-  // toggleUserError,
-} from './contactsActions';
-// import { addUser } from './contactsOperations';
-import { getUser, addUser, deleteUser, toggleUser } from './contactsOperations';
+//EXAMPLE
 
-const initialState = {
-  contacts: [],
-  filter: '',
-  loading: false,
-  error: null,
-};
+// import { combineReducers } from 'redux';
+// import { createReducer } from '@reduxjs/toolkit';
+// import { filterContact } from './contactsActions';
+// import {
+//   getContact,
+//   addContact,
+//   deleteContact,
+//   toggleContact,
+// } from './contactsOperations';
 
-export const itemReducer = createReducer(initialState.contacts, {
-  [getUser.fulfilled]: (_, { payload }) => payload,
-  // [getUserSuccess]: (_, { payload }) => payload,
-  [addUser.fulfilled]: (state, { payload }) => [...state, payload],
-  // [addUserSuccess]: (state, { payload }) => [...state, payload],
-  [deleteUser.fulfilled]: (state, { payload }) =>
-    state.filter(item => item.id !== payload),
-  // [deleteUserSuccess]: (state, { payload }) =>
-  //   state.filter(item => item.id !== payload),
-  [toggleUser.fulfilled]: (state, { payload }) =>
-    state.map(item => (item.id === payload.id ? payload : item)),
-  // [toggleUserSuccess]: (state, { payload }) =>
-  //   state.map(item => (item.id === payload.id ? payload : item)),
-  // [addUser]: (state, { payload }) => [...state, payload],
-  // [deleteUser]: (state, { payload }) =>
-  //   state.filter(item => item.id !== payload),
-});
+// const initialState = {
+//   contacts: [],
+//   filter: '',
+//   loading: false,
+//   error: null,
+// };
 
-export const loadingReducer = createReducer(initialState.loading, {
-  [getUser.pending]: () => true,
-  [getUser.fulfilled]: () => false,
-  [getUser.rejected]: () => false,
-  // [getUserLoading]: () => true,
-  // [getUserSuccess]: () => false,
-  // [getUserError]: () => false,
+// export const itemReducer = createReducer(initialState.contacts, {
+//   [getContact.fulfilled]: (_, { payload }) => payload,
+//   [addContact.fulfilled]: (state, { payload }) => [...state, payload],
+//   [deleteContact.fulfilled]: (state, { payload }) =>
+//     state.filter(item => item.id !== payload),
+//   [toggleContact.fulfilled]: (state, { payload }) =>
+//     state.map(item => (item.id === payload.id ? payload : item)),
+// });
 
-  [addUser.pending]: () => true,
-  [addUser.fulfilled]: () => false,
-  [addUser.rejected]: () => false,
-  // [addUserLoading]: () => true,
-  // [addUserSuccess]: () => false,
-  // [addUserError]: () => false,
+// export const loadingReducer = createReducer(initialState.loading, {
+//   [getContact.pending]: () => true,
+//   [getContact.fulfilled]: () => false,
+//   [getContact.rejected]: () => false,
 
-  [deleteUser.pending]: () => true,
-  [deleteUser.fulfilled]: () => false,
-  [deleteUser.rejected]: () => false,
-  // [deleteUserLoading]: () => true,
-  // [deleteUserSuccess]: () => false,
-  // [deleteUserError]: () => false,
+//   [addContact.pending]: () => true,
+//   [addContact.fulfilled]: () => false,
+//   [addContact.rejected]: () => false,
 
-  [toggleUser.pending]: () => true,
-  [toggleUser.fulfilled]: () => false,
-  [toggleUser.rejected]: () => false,
-  // [toggleUserLoading]: () => true,
-  // [toggleUserSuccess]: () => false,
-  // [toggleUserError]: () => false,
-});
+//   [deleteContact.pending]: () => true,
+//   [deleteContact.fulfilled]: () => false,
+//   [deleteContact.rejected]: () => false,
 
-export const errorReducer = createReducer(initialState.error, {
-  [getUser.rejected]: (_, { payload }) => payload,
-  [getUser.pending]: () => null,
-  // [getUserError]: (_, { payload }) => payload,
+//   [toggleContact.pending]: () => true,
+//   [toggleContact.fulfilled]: () => false,
+//   [toggleContact.rejected]: () => false,
+// });
 
-  [addUser.rejected]: (_, { payload }) => payload,
-  [addUser.pending]: () => null,
-  // [addUserError]: (_, { payload }) => payload,
+// export const errorReducer = createReducer(initialState.error, {
+//   [getContact.rejected]: (_, { payload }) => payload,
+//   [getContact.pending]: () => null,
 
-  [deleteUser.rejected]: (_, { payload }) => payload,
-  [deleteUser.pending]: () => null,
-  // [deleteUserError]: (_, { payload }) => payload,
+//   [addContact.rejected]: (_, { payload }) => payload,
+//   [addContact.pending]: () => null,
 
-  [toggleUser.rejected]: (_, { payload }) => payload,
-  [toggleUser.pending]: () => null,
-  // [toggleUserError]: (_, { payload }) => payload,
-});
+//   [deleteContact.rejected]: (_, { payload }) => payload,
+//   [deleteContact.pending]: () => null,
 
-export const filterReducer = createReducer(initialState.filter, {
-  [filterUser]: (_, { payload }) => payload,
-});
+//   [toggleContact.rejected]: (_, { payload }) => payload,
+//   [toggleContact.pending]: () => null,
+// });
 
-export const reducer = combineReducers({
-  item: itemReducer,
-  filter: filterReducer,
-  loading: loadingReducer,
-  error: errorReducer,
-});
+// export const filterReducer = createReducer(initialState.filter, {
+//   [filterContact]: (_, { payload }) => payload,
+// });
+
+// export const reducer = combineReducers({
+//   item: itemReducer,
+//   filter: filterReducer,
+//   loading: loadingReducer,
+//   error: errorReducer,
+// });
