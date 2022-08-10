@@ -9,7 +9,10 @@ export const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.contacts);
   const filter = useSelector(state => state.contacts.filter);
-  const loading = useSelector(state => state.loading);
+  const loading = useSelector(state => state.contacts.loading);
+  const error = useSelector(state => state.contacts.error);
+
+  console.log('error', error);
 
   useEffect(() => {
     dispatch(contactsOperations.getContact());
@@ -31,12 +34,15 @@ export const ContactList = () => {
 
   return (
     <>
-      {loading && <ThreeDots color="#00BFFF" height={80} width={80} />}
       <ul className={s.list}>
         {filteredContacts?.map(item => (
           <ContactItem item={item} key={item.id} />
         ))}
       </ul>
+      {loading && <ThreeDots color="#00BFFF" height={80} width={80} />}
+      {error && (
+        <p style={{ color: 'red' }}>Oops, something went wrong, try again</p>
+      )}
     </>
   );
 };

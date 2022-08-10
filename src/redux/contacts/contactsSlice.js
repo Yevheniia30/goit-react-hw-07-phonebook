@@ -34,9 +34,9 @@ const contactsSlice = createSlice({
       state.contacts = payload;
       state.loading = false;
     },
-    [getContact.rejected]: (state, { payload }) => {
+    [getContact.rejected]: (state, { error }) => {
       state.loading = false;
-      state.error = payload;
+      state.error = error;
     },
 
     [addContact.pending]: state => ({
@@ -48,9 +48,9 @@ const contactsSlice = createSlice({
       state.contacts.push(payload);
       state.loading = false;
     },
-    [addContact.rejected]: (state, { payload }) => {
+    [addContact.rejected]: (state, { error }) => {
       state.loading = false;
-      state.error = payload;
+      state.error = error;
     },
 
     [deleteContact.pending]: state => ({
@@ -62,25 +62,25 @@ const contactsSlice = createSlice({
       state.contacts = state.contacts.filter(item => item.id !== payload);
       state.loading = false;
     },
-    [deleteContact.rejected]: (state, { payload }) => {
+    [deleteContact.rejected]: (state, { error }) => {
       state.loading = false;
-      state.error = payload;
+      state.error = error;
     },
 
     [toggleContact.pending]: state => ({
       ...state,
-      loading: true,
+      //   loading: true,
       error: null,
     }),
     [toggleContact.fulfilled]: (state, { payload }) => {
       state.contacts = state.contacts.map(item =>
         item.id === payload.id ? payload : item
       );
-      state.loading = false;
+      //   state.loading = false;
     },
-    [toggleContact.rejected]: (state, { payload }) => {
-      state.loading = false;
-      state.error = payload;
+    [toggleContact.rejected]: (state, { error }) => {
+      //   state.loading = false;
+      state.error = error;
     },
   },
 });
